@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: flix
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flix
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  flyway:
+    enabled: true
