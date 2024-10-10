@@ -14,3 +14,7 @@ spring:
 
   flyway:
     enabled: true
+
+flix:
+  security:
+    secret: palavra-secreta
