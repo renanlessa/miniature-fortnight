@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "61b40ccf-564a-4cb8-ba0c-0f77d058743a",
+		"name": "Flix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6990392",
+		"_collection_link": "https://planetary-space-178208.postman.co/workspace/PanelaDev~39858e3d-d89f-4c3f-9141-c023b85c97e3/collection/6990392-61b40ccf-564a-4cb8-ba0c-0f77d058743a?action=share&source=collection_link&creator=6990392"
+	},
+	"item": [
+		{
+			"name": "Registrar usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Renan\",\n  \"email\": \"renanlessa@gmail.com\",\n  \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let data = pm.response.json();",
+							"pm.collectionVariables.set(\"token\", data.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"renanlessa@gmail.com\",\n  \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria - salvar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInN1YiI6InJlbmFubGVzc2FAZ21haWwuY29tIiwiZXhwIjoxNzI4NjcwNTc2LCJpYXQiOjE3Mjg1ODQxNzZ9.gr_6Zb_gJn8LLFOOgKyxEhee02g9BhX9FLa9vLQT68I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Suspense\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/category",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filme - salvar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"De volta para o futuro II\",\n  \"description\": \"Filme antigo sobre viagem no tempo\",\n  \"categories\": [\n    1\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/movie",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filme - update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 2,\n  \"name\": \"De volta para o futuro II\",\n  \"description\": \"Filme antigo sobre viagem no tempo update\",\n  \"categories\": [\n    2\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/movie",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filme - listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/flix/movie",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria - listar todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Suspense\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/category",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria - listar por id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Suspense\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/category/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"category",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria - deletar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Suspense\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/category/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"category",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
