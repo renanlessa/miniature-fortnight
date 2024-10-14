@@ -6,6 +6,7 @@ import dev.flix.repository.MovieRespository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +48,11 @@ public class MovieService {
     }
 
     private List<Category> findCategories(List<Category> categories) {
-        return categories.stream()
-                .map(category -> categoryService.findById(category.getId()).orElse(null))
-                .toList();
+        List<Category> categoriesList = new ArrayList<>();
+        categories.forEach(category -> {
+            Optional<Category> optCategory = categoryService.findById(category.getId());
+            optCategory.ifPresent(categoriesList::add);
+        });
+        return categoriesList;
     }
 }

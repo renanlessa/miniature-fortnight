@@ -131,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"De volta para o futuro II\",\n  \"description\": \"Filme antigo sobre viagem no tempo\",\n  \"categories\": [\n    1\n  ]\n}",
+					"raw": "{\n  \"name\": \"De volta para o futuro III\",\n  \"description\": \"Filme antigo sobre viagem no tempo\",\n  \"categories\": [\n    6\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,7 +169,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": 2,\n  \"name\": \"De volta para o futuro II\",\n  \"description\": \"Filme antigo sobre viagem no tempo update\",\n  \"categories\": [\n    2\n  ]\n}",
+					"raw": "{\n  \"id\": 8,\n  \"name\": \"De volta para o futuro III\",\n  \"description\": \"Filme antigo sobre viagem no tempo update\",\n  \"categories\": [\n    1,2,4\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -185,6 +185,36 @@
 					"path": [
 						"flix",
 						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filme - deletar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/flix/movie/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"movie",
+						"5"
 					]
 				}
 			},
@@ -220,10 +250,7 @@
 			"response": []
 		},
 		{
-			"name": "Categoria - listar todos",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Filme - listar por id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -237,15 +264,36 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Suspense\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				"url": {
+					"raw": "localhost:8080/flix/movie/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"movie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria - listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
 						}
-					}
+					]
 				},
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "localhost:8080/flix/category",
 					"host": [
@@ -262,9 +310,6 @@
 		},
 		{
 			"name": "Categoria - listar por id",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -278,17 +323,8 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Suspense\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/flix/category/4",
+					"raw": "localhost:8080/flix/category/3",
 					"host": [
 						"localhost"
 					],
@@ -296,7 +332,7 @@
 					"path": [
 						"flix",
 						"category",
-						"4"
+						"3"
 					]
 				}
 			},
@@ -317,17 +353,8 @@
 				},
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Suspense\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/flix/category/3",
+					"raw": "localhost:8080/flix/category/5",
 					"host": [
 						"localhost"
 					],
@@ -335,7 +362,7 @@
 					"path": [
 						"flix",
 						"category",
-						"3"
+						"5"
 					]
 				}
 			},
