@@ -3,8 +3,10 @@ package dev.flix.mapper;
 import dev.flix.controller.request.MovieRequest;
 import dev.flix.controller.response.CategoryResponse;
 import dev.flix.controller.response.MovieResponse;
+import dev.flix.controller.response.StreamServiceResponse;
 import dev.flix.entity.Category;
 import dev.flix.entity.Movie;
+import dev.flix.entity.StreamService;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -21,11 +23,20 @@ public class MovieMapper {
                         .build())
                 .toList();
 
+        List<StreamServiceResponse> services = movie.getServices()
+                .stream()
+                .map(streamService -> StreamServiceResponse.builder()
+                        .id(streamService.getId())
+                        .name(streamService.getName())
+                        .build())
+                .toList();
+
         return MovieResponse.builder()
                 .id(movie.getId())
                 .name(movie.getName())
                 .description(movie.getDescription())
                 .categories(categories)
+                .services(services)
                 .build();
     }
 
@@ -35,11 +46,17 @@ public class MovieMapper {
                 .map(categoryId -> Category.builder().id(categoryId).build())
                 .toList();
 
+        List<StreamService> services = request.services()
+                .stream()
+                .map(streamServiceId -> StreamService.builder().id(streamServiceId).build())
+                .toList();
+
         return Movie.builder()
                 .id(request.id())
                 .name(request.name())
                 .description(request.description())
                 .categories(categories)
+                .services(services)
                 .build();
     }
 

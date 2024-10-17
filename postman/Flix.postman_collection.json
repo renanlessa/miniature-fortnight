@@ -42,8 +42,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"let data = pm.response.json();",
-							"pm.collectionVariables.set(\"token\", data.token)"
+							"let body = pm.response.json();",
+							"pm.collectionVariables.set(\"token\", body.token)"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -77,44 +77,6 @@
 			"response": []
 		},
 		{
-			"name": "Categoria - salvar",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInN1YiI6InJlbmFubGVzc2FAZ21haWwuY29tIiwiZXhwIjoxNzI4NjcwNTc2LCJpYXQiOjE3Mjg1ODQxNzZ9.gr_6Zb_gJn8LLFOOgKyxEhee02g9BhX9FLa9vLQT68I",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Suspense\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/flix/category",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"flix",
-						"category"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Filme - salvar",
 			"request": {
 				"auth": {
@@ -131,7 +93,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"De volta para o futuro III\",\n  \"description\": \"Filme antigo sobre viagem no tempo\",\n  \"categories\": [\n    6\n  ]\n}",
+					"raw": "{\n  \"name\": \"De volta para o futuro I\",\n  \"description\": \"Filme antigo sobre viagem no tempo\",\n  \"categories\": [\n    1\n  ],\n  \"services\": [\n    1\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": 8,\n  \"name\": \"De volta para o futuro III\",\n  \"description\": \"Filme antigo sobre viagem no tempo update\",\n  \"categories\": [\n    1,2,4\n  ]\n}",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"De volta para o futuro I\",\n  \"description\": \"Filme antigo sobre viagem no tempo update\",\n  \"categories\": [\n    4\n  ],\n  \"services\": [\n    1,3,4\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -280,6 +242,44 @@
 			"response": []
 		},
 		{
+			"name": "Categoria - salvar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Terror\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/category",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Categoria - listar todos",
 			"request": {
 				"auth": {
@@ -363,6 +363,133 @@
 						"flix",
 						"category",
 						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Serviço de Streaming - salvar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Disney+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/flix/stream-service",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"stream-service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Serviço de Streaming - listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/flix/stream-service",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"stream-service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Serviço de Streaming - listar por id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/flix/stream-service/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"stream-service",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Serviço de Streaming - deletar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/flix/stream-service/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flix",
+						"stream-service",
+						"2"
 					]
 				}
 			},
