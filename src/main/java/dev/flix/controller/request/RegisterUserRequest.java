@@ -1,4 +1,11 @@
 package dev.flix.controller.request;
 
-public record RegisterUserRequest(String name, String email, String password) {
+import jakarta.validation.constraints.NotEmpty;
+
+public record RegisterUserRequest(@NotEmpty(message = "Nome é obrigatório.")
+                                  String name,
+                                  @NotEmpty(message = "Email é obrigatório.")
+                                  String email,
+                                  @NotEmpty(message = "Senha é obrigatório.")
+                                  String password) {
 }

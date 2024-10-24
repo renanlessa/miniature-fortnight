@@ -5,6 +5,7 @@ import dev.flix.controller.response.MovieResponse;
 import dev.flix.entity.Movie;
 import dev.flix.mapper.MovieMapper;
 import dev.flix.service.MovieService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<MovieResponse> createMovie(@RequestBody MovieRequest request) {
+    public ResponseEntity<MovieResponse> createMovie(@Valid @RequestBody MovieRequest request) {
         Movie movie = MovieMapper.toMovie(request);
         Movie savedMovie = movieService.save(movie);
 
@@ -52,7 +53,7 @@ public class MovieController {
     }
 
     @PutMapping
-    public ResponseEntity<MovieResponse> updateMovie(@RequestBody MovieRequest request) {
+    public ResponseEntity<MovieResponse> updateMovie(@Valid @RequestBody MovieRequest request) {
         Movie movie = MovieMapper.toMovie(request);
         return movieService.update(movie)
                 .map(m -> ResponseEntity.ok(MovieMapper.toMovieResponse(m)))

@@ -33,7 +33,7 @@ public class MovieMapper {
 
         return MovieResponse.builder()
                 .id(movie.getId())
-                .name(movie.getName())
+                .title(movie.getName())
                 .description(movie.getDescription())
                 .rating(movie.getRating())
                 .releaseDate(movie.getReleaseDate())
@@ -55,7 +55,7 @@ public class MovieMapper {
 
         return Movie.builder()
                 .id(request.id())
-                .name(request.name())
+                .name(request.title())
                 .description(request.description())
                 .rating(request.rating())
                 .releaseDate(request.releaseDate())

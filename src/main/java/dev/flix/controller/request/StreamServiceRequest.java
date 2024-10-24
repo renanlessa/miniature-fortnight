@@ -1,4 +1,6 @@
 package dev.flix.controller.request;
 
-public record StreamServiceRequest(String name) {
+import jakarta.validation.constraints.NotEmpty;
+
+public record StreamServiceRequest(@NotEmpty(message = "Nome do serviço de streaming é obrigatório.") String name) {
 }

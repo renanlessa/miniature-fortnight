@@ -5,6 +5,7 @@ import dev.flix.controller.response.StreamServiceResponse;
 import dev.flix.entity.StreamService;
 import dev.flix.mapper.StreamServiceMapper;
 import dev.flix.service.StreamServiceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class StreamServiceController {
     private final StreamServiceService service;
 
     @PostMapping
-    public ResponseEntity<StreamServiceResponse> createCategory(@RequestBody StreamServiceRequest request) {
+    public ResponseEntity<StreamServiceResponse> createCategory(@Valid @RequestBody StreamServiceRequest request) {
         StreamService streamService = StreamServiceMapper.toStreamService(request);
         StreamService savedStreamService = service.save(streamService);
         return ResponseEntity.status(HttpStatus.CREATED).body(StreamServiceMapper.toStreamServiceResponse(savedStreamService));
