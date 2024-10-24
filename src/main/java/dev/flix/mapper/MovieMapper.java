@@ -35,6 +35,8 @@ public class MovieMapper {
                 .id(movie.getId())
                 .name(movie.getName())
                 .description(movie.getDescription())
+                .rating(movie.getRating())
+                .releaseDate(movie.getReleaseDate())
                 .categories(categories)
                 .services(services)
                 .build();
@@ -55,6 +57,8 @@ public class MovieMapper {
                 .id(request.id())
                 .name(request.name())
                 .description(request.description())
+                .rating(request.rating())
+                .releaseDate(request.releaseDate())
                 .categories(categories)
                 .services(services)
                 .build();

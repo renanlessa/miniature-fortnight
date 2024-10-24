@@ -27,6 +27,10 @@ public class MovieService {
         return movieRespository.findById(id);
     }
 
+    public List<Movie> findByCategory(Long categoryId) {
+        return movieRespository.findMovieByCategories(List.of(Category.builder().id(categoryId).build()));
+    }
+
     public Movie save(Movie newMovie) {
         newMovie.setCategories(findCategories(newMovie.getCategories()));
         newMovie.setServices(findServices(newMovie.getServices()));
@@ -39,6 +43,8 @@ public class MovieService {
             Movie movie = optMovie.get();
             movie.setName(updateMovie.getName());
             movie.setDescription(updateMovie.getDescription());
+            movie.setRating(updateMovie.getRating());
+            movie.setReleaseDate(updateMovie.getReleaseDate());
 
             movie.getCategories().clear();
             movie.getCategories().addAll(findCategories(updateMovie.getCategories()));

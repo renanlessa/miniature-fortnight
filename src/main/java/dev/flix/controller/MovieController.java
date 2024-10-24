@@ -34,6 +34,14 @@ public class MovieController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<MovieResponse>> findMoviesByCategoryId(@RequestParam Long category) {
+        List<MovieResponse> list = movieService.findByCategory(category).stream()
+                .map(movie -> MovieMapper.toMovieResponse(movie))
+                .toList();
+        return ResponseEntity.ok(list);
+    }
+
     @PostMapping
     public ResponseEntity<MovieResponse> createMovie(@RequestBody MovieRequest request) {
         Movie movie = MovieMapper.toMovie(request);
