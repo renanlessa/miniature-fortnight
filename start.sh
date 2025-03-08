@@ -1,0 +1,1 @@
+java -jar target/flix-0.0.1-SNAPSHOT.jar    
