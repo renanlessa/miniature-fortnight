@@ -4,8 +4,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/flix
-    username: postgres
-    password: postgres
+    username: danilo
+    password: danilo
     driver-class-name: org.postgresql.Driver
 
   jpa:
